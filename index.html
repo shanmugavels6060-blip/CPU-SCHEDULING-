@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>CPU Scheduling Simulator</h1>
+
+    <div class="form-section">
+        <label>Choose Algorithm</label>
+        <select id="algo" onchange="toggleInputs()">
+            <option value="FCFS">FCFS</option>
+            <option value="SJF">SJF</option>
+            <option value="SRTF">SRTF</option>
+            <option value="Priority">Priority (Non-Preemptive)</option>
+            <option value="Priority-Preemptive">Priority (Preemptive)</option>
+            <option value="RR">Round Robin</option>
+        </select>
+
+        <label>Arrival Time (space separated)</label>
+        <input type="text" id="arrival" placeholder="0 1 2 3">
+
+        <label>Burst Time (space separated)</label>
+        <input type="text" id="burst" placeholder="5 3 4 2">
+
+        <div id="p-input-box">
+            <label>Priority (space separated)</label>
+            <input type="text" id="priority" placeholder="1 2 3 4">
+        </div>
+
+        <div id="p-logic-box">
+            <label>Priority Logic</label>
+            <select id="priority-logic">
+                <option value="low">Lower number = Higher priority</option>
+                <option value="high">Higher number = Higher priority</option>
+            </select>
+        </div>
+
+        <div id="q-input-box">
+            <label>Time Quantum</label>
+            <input type="number" id="quantum" value="2">
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+    </div>
+
+    <div class="results">
+        <h2>Gantt Chart</h2>
+        <div id="gantt-container" class="gantt-container"></div>
+
+        <h2>Process Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Process</th>
+                    <th>AT</th>
+                    <th>BT</th>
+                    <th>FT</th>
+                    <th>TAT</th>
+                    <th>WT</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+        <div class="summary">
+            <p>Average Waiting Time: <span id="avg-wait">0</span></p>
+            <p>Average Turnaround Time: <span id="avg-tat">0</span></p>
+            <p>CPU Utilization: <span id="cpu-util">0%</span></p>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
